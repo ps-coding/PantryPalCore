@@ -73,7 +73,7 @@ class RecipeDetail(tk.Toplevel):
         label.pack()
         timec = tk.Label(self, text = "Time: " + str(recipe[1]) + " minutes")
         timec.pack()
-        descriptionD = tk.Label(self, text = "Description: " + recipe[9].upper())
+        descriptionD = tk.Label(self, text = "INSTRUCTIONS TO MAKE")
         descriptionD.pack()
         steps = recipe[8].strip('][').split(', ')
         stepsList = tk.Listbox(self)
