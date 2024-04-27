@@ -2,3 +2,4 @@
 .idea/
 RAW_recipes.csv
 *.iml
+.vscode/
