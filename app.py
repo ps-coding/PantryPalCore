@@ -117,7 +117,7 @@ ingredients_label = tk.Label(root, text="Ingredients:")
 ingredients_label.grid(row=1, column=0, padx=10, pady=5, sticky="nsew")
 ingredients_listbox = tk.Listbox(root, selectmode=tk.SINGLE)
 ingredients_listbox.grid(row=1, column=1, padx=10, pady=5, sticky="nsew")
-for ingredient in ['flour', 'salt', 'butter', 'sugar', 'oil']:
+for ingredient in ['water', 'salt', 'sugar', 'oil', 'butter', 'flour']:
     ingredients.append(ingredient)
     ingredients_listbox.insert(tk.END, ingredient.upper())
 
