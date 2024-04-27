@@ -47,9 +47,9 @@ def make_meal():
 class Recipes(tk.Toplevel):
     def __init__(self, master = None, recipes = []):
         super().__init__(master = master)
-        self.title("Recipes")
+        self.title("BROWSER")
         self.recipes = recipes
-        label = tk.Label(self, text ="Recipes")
+        label = tk.Label(self, text = str(len(recipes)) + " RECIPES" if len(recipes) else "NO RECIPES")
         label.pack()
         self.listbox = tk.Listbox(self)
         self.listbox.pack(expand = True)
@@ -69,7 +69,7 @@ class Recipes(tk.Toplevel):
 class RecipeDetail(tk.Toplevel):
     def __init__(self, master = None, recipe = None):
         super().__init__(master = master)
-        self.title("Recipe Details")
+        self.title("DETAILS")
 
         recipeName = tk.Label(self, text = recipe[0].upper())
         recipeName.pack()
@@ -109,7 +109,7 @@ ingredients = []
 
 
 root = tk.Tk()
-root.title("Meal Ingredients".upper())
+root.title("PantryPal")
 
 ingredient_label = tk.Label(root, text="Enter Ingredient:")
 ingredient_label.grid(row=0, column=0, padx=10, pady=5, sticky="e")
