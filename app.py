@@ -21,7 +21,7 @@ def filter_by_ingredients(available_ingredients):
 def add_ingredient():
     ingredient = ingredient_entry.get()
     if ingredient:
-        ingredients.append(ingredient)
+        ingredients.append(ingredient.lower())
         ingredients_listbox.insert(tk.END, ingredient.upper())
         ingredient_entry.delete(0, tk.END)
     else:
@@ -74,7 +74,7 @@ class RecipeDetail(tk.Toplevel):
         recipeName = tk.Label(self, text = recipe[0].upper())
         recipeName.pack()
 
-        minutesLabel = tk.Label(self, text = "TIME: " + str(int((recipe[1]) / 3600)) + " MINUTES")
+        minutesLabel = tk.Label(self, text = "TIME: " + str(recipe[2]) + " MINUTES")
         minutesLabel.pack()
 
         if (isinstance(recipe[9], str)):
