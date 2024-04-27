@@ -70,33 +70,40 @@ class RecipeDetail(tk.Toplevel):
     def __init__(self, master = None, recipe = None):
         super().__init__(master = master)
         self.title("Recipe Details")
-        label = tk.Label(self, text = recipe[0].upper())
-        label.pack()
-        timec = tk.Label(self, text = "TIME: " + str(int((recipe[1]) / 3600)) + " MINUTES")
-        timec.pack()
-        contributorTitle = tk.Label(self, text="CONTRIBUTOR DESCRIPTION")
-        contributorTitle.pack()
-        contributorD = tk.Text(self, wrap=tk.WORD, height=3)
-        contributorD.pack()
-        contributorD.insert(tk.END, recipe[9].upper())
-        contributorD.config(state=tk.DISABLED)
-        descriptionD = tk.Label(self, text = "INSTRUCTIONS TO MAKE")
-        descriptionD.pack()
-        steps = recipe[8].strip('][').split(', ')
+
+        recipeName = tk.Label(self, text = recipe[0].upper())
+        recipeName.pack()
+
+        minutesLabel = tk.Label(self, text = "TIME: " + str(int((recipe[1]) / 3600)) + " MINUTES")
+        minutesLabel.pack()
+
+        if (isinstance(recipe[9], str)):
+            contributorTitle = tk.Label(self, text="CONTRIBUTOR DESCRIPTION")
+            contributorTitle.pack()
+
+            contributorDescription = tk.Text(self, wrap=tk.WORD, height=3)
+            contributorDescription.pack()
+            contributorDescription.insert(tk.END, recipe[9].upper())
+            contributorDescription.config(state=tk.DISABLED)
+
+        stepsTitle = tk.Label(self, text = "INSTRUCTIONS TO MAKE")
+        stepsTitle.pack()
         stepsList = tk.Listbox(self)
-        stepsList.pack(expand = True)
-        descriptionI = tk.Label(self, text = "INGREDIENTS")
-        descriptionI.pack()
+        stepsList.pack(expand = True, fill=tk.X)
+        steps = recipe[8].strip('][').split(', ')
         for step in steps:
             stepsList.insert(tk.END, step.strip("'").upper())
         stepsList.config(state=tk.DISABLED)
-        ingredients = recipe[10].strip('][').split(', ')
+
+        ingredientsTitle = tk.Label(self, text = "INGREDIENTS")
+        ingredientsTitle.pack()
         ingredientsList = tk.Listbox(self)
         ingredientsList.pack(expand = True)
+        ingredients = recipe[10].strip('][').split(', ')
         for ingredient in ingredients:
             ingredientsList.insert(tk.END, ingredient.strip("'").upper())
-        self.geometry("400x400")
         ingredientsList.config(state=tk.DISABLED)
+
 
 ingredients = []
 
