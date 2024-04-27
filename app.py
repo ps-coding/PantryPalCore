@@ -122,7 +122,7 @@ add_button.grid(row=0, column=2, padx=10, pady=5)
 
 ingredients_label = tk.Label(root, text="Ingredients:")
 ingredients_label.grid(row=1, column=0, padx=10, pady=5, sticky="nsew")
-ingredients_listbox = tk.Listbox(root, selectmode=tk.SINGLE)
+ingredients_listbox = tk.Listbox(root)
 ingredients_listbox.grid(row=1, column=1, padx=10, pady=5, sticky="nsew")
 for ingredient in ['water', 'salt', 'sugar', 'oil', 'butter', 'flour']:
     ingredients.append(ingredient)
