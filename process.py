@@ -15,7 +15,13 @@ def filter_by_ingredients(available_ingredients):
     return can_make
 
 
-results = filter_by_ingredients(
-    ['all-purpose flour', 'flour', 'baking soda', 'baking powder', 'cocoa powder', 'butter', 'sugar', 'oil'])
+def test_filter_by_ingredients():
+    results = filter_by_ingredients(
+        ['all-purpose flour', 'flour', 'baking soda', 'baking powder',
+         'cocoa powder', 'butter', 'sugar', 'oil'])
 
-print(list(map(lambda x: x[0], results)))
+    assert len(results) == 19
+    print(results[0][0] == "better  cake mix")
+
+
+test_filter_by_ingredients()

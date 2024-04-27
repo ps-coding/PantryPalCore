@@ -9,18 +9,20 @@ def filter_by_ingredients(available_ingredients):
     can_make = []
 
     for recipe in data:
-        recipe_ingredients = map(lambda x: x.strip("'"), recipe[10].strip('][').split(', '))
+        recipe_ingredients = map(lambda x: x.strip("'"),
+                                 recipe[10].strip('][').split(', '))
 
         if all(map(lambda x: x in available_ingredients, recipe_ingredients)):
             can_make.append(recipe)
 
     return can_make
 
+
 def add_ingredient():
     ingredient = ingredient_entry.get()
     if ingredient:
         ingredients.append(ingredient)
-        ingredients_listbox.insert(tk.END, ingredient)
+        ingredients_listbox.insert(tk.END, ingredient.upper())
         ingredient_entry.delete(0, tk.END)
     else:
         messagebox.showwarning("Warning", "Please enter an ingredient.")
@@ -41,16 +43,16 @@ def make_meal():
     else:
         messagebox.showwarning("Warning", "Please add ingredients first.")
 
+
 class Recipes(tk.Toplevel):
     def __init__(self, master = None, recipes = []):
         super().__init__(master = master)
         self.title("Recipes")
-        self.geometry("400x400")
         self.recipes = recipes
         label = tk.Label(self, text ="Recipes")
         label.pack()
         self.listbox = tk.Listbox(self)
-        self.listbox.pack()
+        self.listbox.pack(expand = True)
         for recipe in self.recipes:
             self.listbox.insert(tk.END, recipe[0].upper())
 
@@ -68,31 +70,39 @@ class RecipeDetail(tk.Toplevel):
     def __init__(self, master = None, recipe = None):
         super().__init__(master = master)
         self.title("Recipe Details")
-        self.geometry("400x400")
         label = tk.Label(self, text = recipe[0].upper())
         label.pack()
-        timec = tk.Label(self, text = "Time: " + str((recipe[1]) / 1000) + " minutes")
+        timec = tk.Label(self, text = "TIME: " + str(int((recipe[1]) / 3600)) + " MINUTES")
         timec.pack()
+        contributorTitle = tk.Label(self, text="CONTRIBUTOR DESCRIPTION")
+        contributorTitle.pack()
+        contributorD = tk.Text(self, wrap=tk.WORD, height=3)
+        contributorD.pack()
+        contributorD.insert(tk.END, recipe[9].upper())
+        contributorD.config(state=tk.DISABLED)
         descriptionD = tk.Label(self, text = "INSTRUCTIONS TO MAKE")
         descriptionD.pack()
         steps = recipe[8].strip('][').split(', ')
         stepsList = tk.Listbox(self)
-        stepsList.pack()
+        stepsList.pack(expand = True)
         descriptionI = tk.Label(self, text = "INGREDIENTS")
         descriptionI.pack()
         for step in steps:
-            stepsList.insert(tk.END, step.strip("'"))
+            stepsList.insert(tk.END, step.strip("'").upper())
+        stepsList.config(state=tk.DISABLED)
         ingredients = recipe[10].strip('][').split(', ')
         ingredientsList = tk.Listbox(self)
-        ingredientsList.pack()
+        ingredientsList.pack(expand = True)
         for ingredient in ingredients:
-            ingredientsList.insert(tk.END, ingredient.strip("'"))
+            ingredientsList.insert(tk.END, ingredient.strip("'").upper())
+        self.geometry("400x400")
+        ingredientsList.config(state=tk.DISABLED)
 
 ingredients = []
 
 
 root = tk.Tk()
-root.title("Meal Ingredients")
+root.title("Meal Ingredients".upper())
 
 ingredient_label = tk.Label(root, text="Enter Ingredient:")
 ingredient_label.grid(row=0, column=0, padx=10, pady=5, sticky="e")
@@ -109,7 +119,7 @@ ingredients_listbox = tk.Listbox(root, selectmode=tk.SINGLE)
 ingredients_listbox.grid(row=1, column=1, padx=10, pady=5, sticky="nsew")
 for ingredient in ['flour', 'salt', 'butter', 'sugar', 'oil']:
     ingredients.append(ingredient)
-    ingredients_listbox.insert(tk.END, ingredient)
+    ingredients_listbox.insert(tk.END, ingredient.upper())
 
 remove_button = tk.Button(root, text="Remove Ingredient", command=remove_ingredient)
 remove_button.grid(row=1, column=2, padx=10, pady=5)
