@@ -1,4 +1,4 @@
-# Pantry Pal (Core Algorithm)
+# Pantry Pal
 
 - Make sure to download RAW_recipes.csv from [here](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions)
 - Delete the other csv files
@@ -7,5 +7,5 @@
 
 ```shell
 pip install pandas
-python process.py
+python app.py
 ```
